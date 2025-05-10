@@ -59,9 +59,16 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_98314DE5E6C54B4D965B60D7BDA8B914 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_BBF7602C68DD4D9F968EC382ED40C266 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_62637BDE344D4100B6C0288E332B2EEE }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Deploy ARM template
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ fromJson(secrets.AZURE_CREDENTIALS).subscriptionId }}
+          resourceGroupName: "myheroacademia"
+          template: ./arm-template/template.json  # path to your ARM template
+          parameters: ./arm-template/parameters.json  # optional: parameter file path
+          deploymentName: armDeploy-${{ github.run_number }}-${{ github.sha }}
 
       - name: 'Run Azure Functions Action'
         uses: Azure/functions-action@v1
