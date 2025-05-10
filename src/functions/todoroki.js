@@ -4,7 +4,7 @@ const { ResourceManagementClient } = require('@azure/arm-resources');
 
 const subscriptionId = process.env.AZURE_SUBSCRIPTION_ID;
 
-app.http('today-friday-func-name', {
+app.http('todoroki', {
   methods: ['POST'],
   authLevel: 'anonymous',
   handler: async (request, context) => {

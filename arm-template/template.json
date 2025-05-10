@@ -127,6 +127,10 @@
             {
               "name": "WEBSITE_RUN_FROM_PACKAGE",
               "value": "1"
+            },
+            {
+              "name": "AZURE_SUBSCRIPTION_ID",
+              "value": "621cec32-fab8-4552-ab21-d48ea699fe04"
             }
           ]
         }
